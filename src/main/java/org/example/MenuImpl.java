@@ -8,17 +8,14 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import static org.example.ConsoleWriter.writeMessage;
+
 
 @Component
-public class MenuImpl extends ConsoleReader implements CalcOperations, Menu {
+public class MenuImpl extends ConsoleReaderImpl implements CalcOperations, Menu, ConsoleWriter,ConsoleReader {
     private UserService userService;
 
 
-    @Autowired
-    public MenuImpl(UserService userService) {
-        this.userService = userService;
-    }
+
 
 
     public void mainMenu() throws SQLException, IOException {
@@ -85,5 +82,10 @@ public class MenuImpl extends ConsoleReader implements CalcOperations, Menu {
     @Override
     public double calc(double a, double b, char operation) {
         return 0;
+    }
+
+    @Override
+    public void writeMessage(String message) {
+
     }
 }
