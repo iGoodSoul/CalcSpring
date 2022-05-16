@@ -1,13 +1,20 @@
-package org.example;
+package org.example.service;
 
-import org.springframework.context.annotation.Bean;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import static org.example.Application.sc;
+import java.util.Scanner;
 
 @Component
-public class Operations {
-    public static double getDigit() {
+public class CalcOperationsIml implements CalcOperations{
+    private Scanner sc;
+    @Autowired
+    public CalcOperationsIml(Scanner sc) {
+        this.sc = sc;
+    }
+@Override
+    public double getDigit() {
         System.out.println("Insert digit:");
         double num;
         if (sc.hasNextInt()) {
@@ -19,8 +26,8 @@ public class Operations {
         }
         return num;
     }
-
-    public static char getOperation() {
+    @Override
+    public char getOperation() {
         System.out.println("Insert operation:");
         char operation;
         if (sc.hasNext()) {
@@ -34,7 +41,7 @@ public class Operations {
     }
 
 
-    public static double calc(double a, double b, char operation) {
+    public double calc(double a, double b, char operation) {
         double result = 0;
         switch (operation) {
             case '+':

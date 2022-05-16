@@ -1,39 +1,35 @@
 package org.example;
 
 
+import org.example.service.CalcOperations;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Scanner;
 
-import static org.example.Operations.*;
-
 @Component
-public class Application {
-    static Scanner sc = new Scanner(System.in);
+public abstract class Application  implements Menu {
 
 
-    public void start() {
-        for (int i = 0; i < 1; i++) {
-            double a = getDigit();
-        double b = getDigit();
-        char operation = getOperation();
-        double result = calc(a, b, operation);
-        System.out.println("Result: " + result);
-            System.out.println("Do you want to repeat it?");
-            System.out.println("1: yes");
-            System.out.println("any key : exit");
-            int chose = sc.nextInt();
-            if (chose == 1) {
-                start();
-                
-            }else {
-                System.out.println("Good bye");
-                sc.close();
-               i=1;
-            }
+
+
+    public void start() throws SQLException, IOException {
+        mainMenu();
+
     }
+
+    public void addActionListener(ActionListener actionListener) throws ClassNotFoundException {
+        Class.forName("com.mysql.jdbc.Driver");
+
     }
+
 
 }
+
+
+
+
+
